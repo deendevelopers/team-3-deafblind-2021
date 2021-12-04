@@ -3,7 +3,7 @@ import { OnboardingScreens } from 'navigation/Navigation.types';
 import { OnboardingScreenParamList } from 'navigation/Navigator';
 import React from 'react';
 import { View, Text, Button } from 'react-native';
-import Info from 'src/icons/Info';
+import Info from 'icons/Info';
 
 export type LandingScreenRoutingProps = StackScreenProps<
   OnboardingScreenParamList,

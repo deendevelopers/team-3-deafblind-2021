@@ -3,15 +3,10 @@
     "target": "ES2020",
     "baseUrl": ".",
     "paths": {
-      "navigation/*": [
-        "./src/navigation/*"
-      ],
-      "screens/*": [
-        "./src/screens/*"
-      ],
-      "components/*": [
-        "./src/app/components/*"
-      ]
+      "navigation/*": ["./src/navigation/*"],
+      "screens/*": ["./src/screens/*"],
+      "components/*": ["./src/app/components/*"],
+      "theme/*": ["./src/theme/*"]
     },
     "useDefineForClassFields": true,
     "forceConsistentCasingInFileNames": true,
@@ -19,13 +14,8 @@
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
-    "types": [
-      "reflect-metadata"
-    ],
+    "lib": ["dom", "esnext"],
+    "types": ["reflect-metadata"],
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,

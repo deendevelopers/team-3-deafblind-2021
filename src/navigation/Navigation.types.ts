@@ -1,6 +1,6 @@
 export enum Navigators {
-  HomeNavigator = 'HomeNavigator',
-  SettingsNavigator = 'SettingsNavigator',
+  HomeNavigator = 'Home',
+  SettingsNavigator = 'Settings',
   MainNavigator = 'MainNavigator',
 }
 

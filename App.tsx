@@ -10,6 +10,7 @@ import LocationScreen from 'screens/Home/LocationScreen';
 import { MainApp } from './src/navigation/Navigator';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Navigators, OnboardingScreens } from 'navigation/Navigation.types';
+import colors from 'theme/colors';
 
 const Stack = createStackNavigator();
 
@@ -19,8 +20,8 @@ const theme = {
   roundness: 2,
   colors: {
     ...PaperTheme.colors,
-    primary: '#112E51',
-    accent: '#f1c40f',
+    primary: colors.primary,
+    accent: colors.tertiary,
     text: 'black',
   },
 };
@@ -30,7 +31,7 @@ const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#112E51',
+    primary: colors.primary,
     background: '#F4F3EF',
     card: '#112E51',
     text: 'white',

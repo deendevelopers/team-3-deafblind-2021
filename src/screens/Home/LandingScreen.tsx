@@ -1,9 +1,10 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import { OnboardingScreens } from 'navigation/Navigation.types';
 import { OnboardingScreenParamList } from 'navigation/Navigator';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
 import Info from 'icons/Info';
+import { apiCall } from '../../network/GoogleMapsAPI';
 
 export type LandingScreenRoutingProps = StackScreenProps<
   OnboardingScreenParamList,

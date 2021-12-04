@@ -6,7 +6,8 @@
       "navigation/*": ["./src/navigation/*"],
       "screens/*": ["./src/screens/*"],
       "components/*": ["./src/app/components/*"],
-      "theme/*": ["./src/theme/*"]
+      "theme/*": ["./src/theme/*"],
+      "state/*": ["./src/state/*"]
     },
     "useDefineForClassFields": true,
     "forceConsistentCasingInFileNames": true,

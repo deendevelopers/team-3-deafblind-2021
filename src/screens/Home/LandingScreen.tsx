@@ -1,12 +1,24 @@
+import { StackScreenProps } from '@react-navigation/stack';
+import { OnboardingScreens } from 'navigation/Navigation.types';
+import { OnboardingScreenParamList } from 'navigation/Navigator';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
-interface ILandingScreenProps {}
+export type LandingScreenRoutingProps = StackScreenProps<
+  OnboardingScreenParamList,
+  OnboardingScreens.LandingScreen
+>;
 
-const LandingScreen = (props: ILandingScreenProps) => {
+interface ILandingScreenProps extends LandingScreenRoutingProps {}
+
+const LandingScreen = ({ navigation }: ILandingScreenProps) => {
   return (
     <View>
       <Text>LandingScreen</Text>
+      <Button
+        title='Navigate to Location screen'
+        onPress={() => navigation.navigate(OnboardingScreens.LocationScreen)}
+      />
     </View>
   );
 };

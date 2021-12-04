@@ -4,24 +4,38 @@ import AllCategoriesScreen from 'screens/Home/AllCategoriesScreen';
 import CategoriesScreen from 'screens/Home/CategoriesScreen';
 import CategoryScreen from 'screens/Home/CategoryScreen';
 import ChooseCategoryScreen from 'screens/Home/ChooseCategoryScreen';
+import { HomeStackScreens } from './Navigation.types';
 
 interface IHomeStackScreenProps {}
 
+export type HomeStackParamList = {
+  [HomeStackScreens.ChooseCategoryScreen]: undefined;
+  [HomeStackScreens.AllCategoriesScreen]: undefined;
+  [HomeStackScreens.CategoriesScreen]: undefined;
+  [HomeStackScreens.CategoryScreen]: undefined;
+};
+
 const HomeStackScreen = (props: IHomeStackScreenProps) => {
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<HomeStackParamList>();
 
   return (
-    <Stack.Navigator initialRouteName='ChooseCategoryScreen'>
+    <Stack.Navigator initialRouteName={HomeStackScreens.ChooseCategoryScreen}>
       <Stack.Screen
-        name='ChooseCategoryScreen'
+        name={HomeStackScreens.ChooseCategoryScreen}
         component={ChooseCategoryScreen}
       />
       <Stack.Screen
-        name='AllCategoriesScreen'
+        name={HomeStackScreens.AllCategoriesScreen}
         component={AllCategoriesScreen}
       />
-      <Stack.Screen name='CategoriesScreen' component={CategoriesScreen} />
-      <Stack.Screen name='CategoryScreen' component={CategoryScreen} />
+      <Stack.Screen
+        name={HomeStackScreens.CategoriesScreen}
+        component={CategoriesScreen}
+      />
+      <Stack.Screen
+        name={HomeStackScreens.CategoryScreen}
+        component={CategoryScreen}
+      />
     </Stack.Navigator>
   );
 };

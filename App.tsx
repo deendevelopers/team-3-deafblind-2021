@@ -1,7 +1,5 @@
-import createStackNavigator from '@react-navigation/stack/lib/typescript/src/navigators/createStackNavigator';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   Provider as PaperProvider,
   DefaultTheme as PaperTheme,
@@ -10,6 +8,8 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import LandingScreen from 'screens/Home/LandingScreen';
 import LocationScreen from 'screens/Home/LocationScreen';
 import { MainApp } from './src/navigation/Navigator';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Navigators, OnboardingScreens } from 'navigation/Navigation.types';
 
 const Stack = createStackNavigator();
 
@@ -19,9 +19,9 @@ const theme = {
   roundness: 2,
   colors: {
     ...PaperTheme.colors,
-    primary: '#53433A',
+    primary: '#112E51',
     accent: '#f1c40f',
-    text: '#2a150d',
+    text: 'black',
   },
 };
 
@@ -30,9 +30,9 @@ const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#9B4949',
+    primary: '#112E51',
     background: '#F4F3EF',
-    card: '#9B4949',
+    card: '#112E51',
     text: 'white',
   },
 };
@@ -42,21 +42,22 @@ const App = () => (
     <NavigationContainer theme={MyTheme}>
       {/* Show landing only once (use async storage to store boolean) */}
       <Stack.Navigator initialRouteName='LandingScreen'>
-        <Stack.Screen name='LandingScreen' component={LandingScreen} />
-        <Stack.Screen name='LocationScreen' component={LocationScreen} />
-        <Stack.Screen name='Main' component={MainApp} />
+        <Stack.Screen
+          name={OnboardingScreens.LandingScreen}
+          component={LandingScreen}
+        />
+        <Stack.Screen
+          name={OnboardingScreens.LocationScreen}
+          component={LocationScreen}
+        />
+        <Stack.Screen
+          name={Navigators.MainNavigator}
+          component={MainApp}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   </PaperProvider>
 );
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

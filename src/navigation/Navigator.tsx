@@ -1,15 +1,21 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import React from 'react';
 import HomeStackScreen from './HomeStackScreen';
+import { Navigators, OnboardingScreens } from './Navigation.types';
 import SettingsStackScreen from './SettingsStackScreen';
 
 const Tab = createMaterialBottomTabNavigator();
 
+export type OnboardingScreenParamList = {
+  [OnboardingScreens.LandingScreen]: undefined;
+  [OnboardingScreens.LocationScreen]: undefined;
+};
+
 export function MainApp() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName={Navigators.HomeNavigator}>
       <Tab.Screen
-        name='Home'
+        name={Navigators.HomeNavigator}
         component={HomeStackScreen}
         // options={{
         //   tabBarIcon: ({ color, size = 20 }) => (
@@ -22,7 +28,7 @@ export function MainApp() {
         // }}
       />
       <Tab.Screen
-        name='Settings'
+        name={Navigators.SettingsNavigator}
         component={SettingsStackScreen}
         // options={{
         //   headerShown: false,

@@ -1,12 +1,24 @@
+import { StackScreenProps } from '@react-navigation/stack';
+import { Navigators, OnboardingScreens } from 'navigation/Navigation.types';
+import { OnboardingScreenParamList } from 'navigation/Navigator';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
-interface ILocationScreenProps {}
+export type LocationScreenRoutingProps = StackScreenProps<
+  OnboardingScreenParamList,
+  OnboardingScreens.LocationScreen
+>;
 
-const LocationScreen = (props: ILocationScreenProps) => {
+interface ILocationScreenProps extends LocationScreenRoutingProps {}
+
+const LocationScreen = ({ navigation }: ILocationScreenProps) => {
   return (
     <View>
       <Text>LocationScreen</Text>
+      <Button
+        title='Navigate to AllCategories screen'
+        onPress={() => navigation.navigate(Navigators.MainNavigator)}
+      />
     </View>
   );
 };

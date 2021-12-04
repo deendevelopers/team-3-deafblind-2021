@@ -12,6 +12,7 @@ module.exports = function (api) {
             components: './src/components',
             theme: './src/theme',
             state: './src/state',
+            icons: './src/icons',
           },
         },
       ],

@@ -10,7 +10,7 @@ export enum OnboardingScreens {
 }
 
 export enum HomeStackScreens {
-  ChooseCategoryScreen = 'ChooseCategoryScreen',
+  ChooseCategoryScreen = 'Choose Category',
   AllCategoriesScreen = 'AllCategoriesScreen',
   CategoriesScreen = 'CategoriesScreen',
   CategoryScreen = 'CategoryScreen',

@@ -8,9 +8,14 @@ import { HomeStackScreens } from './Navigation.types';
 
 interface IHomeStackScreenProps {}
 
+export enum CATEGORIES {
+  places = 'places',
+  activities = 'activities',
+}
+
 export type HomeStackParamList = {
   [HomeStackScreens.ChooseCategoryScreen]: undefined;
-  [HomeStackScreens.AllCategoriesScreen]: undefined;
+  [HomeStackScreens.AllCategoriesScreen]: { category: CATEGORIES };
   [HomeStackScreens.CategoriesScreen]: undefined;
   [HomeStackScreens.CategoryScreen]: undefined;
 };

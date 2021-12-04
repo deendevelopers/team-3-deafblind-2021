@@ -4,7 +4,6 @@ import { OnboardingScreenParamList } from 'navigation/Navigator';
 import React, { useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
 import Info from 'icons/Info';
-import { apiCall } from '../../network/GoogleMapsAPI';
 
 export type LandingScreenRoutingProps = StackScreenProps<
   OnboardingScreenParamList,

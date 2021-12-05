@@ -34,6 +34,8 @@ const ChooseCategoryScreen = ({
           style={styles.placeInput}
           accessibilityLabel='Enter a place name'
           underlineColor='transparent'
+          placeholder='Place'
+          mode='outlined'
         />
       </View>
 

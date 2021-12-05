@@ -1,3 +1,6 @@
+import { ILocationData } from '../network/GoogleMapsAPI';
+import { types } from '../network/GoogleMapsAPI.types';
+
 export enum Navigators {
   HomeNavigator = 'Home',
   SettingsNavigator = 'Settings',
@@ -24,7 +27,7 @@ export type HomeStackParamList = {
   [HomeStackScreens.ChooseCategoryScreen]: undefined;
   [HomeStackScreens.AllCategoriesScreen]: { category: CATEGORIES };
   [HomeStackScreens.CategoriesScreen]: { categoryType: types };
-  [HomeStackScreens.CategoryScreen]: undefined;
+  [HomeStackScreens.CategoryScreen]: { categoryItem: ILocationData };
 };
 
 export enum CATEGORIES {

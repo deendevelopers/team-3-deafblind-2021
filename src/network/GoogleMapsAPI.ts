@@ -26,11 +26,12 @@ import { types } from './GoogleMapsAPI.types';
 const lat = '51.510084785550006';
 const lng = '-0.13502325923340425';
 
-interface ILocationData {
+export interface ILocationData {
   place_id: string;
   name: string;
   photos: object;
   location: string;
+  distance: number;
 }
 
 export async function getPlacesByType(type: types = types.bank) {
@@ -42,7 +43,7 @@ export async function getPlacesByType(type: types = types.bank) {
     if (response.data.error_message)
       return console.log(response.data.error_message);
 
-    const transformedData = response.data.results.map(
+    const transformedData: ILocationData[] = response.data.results.map(
       async ({ place_id, name, photos, geometry }, index) => {
         const currentLocationAddress = await getAddress(
           geometry.location.lat,

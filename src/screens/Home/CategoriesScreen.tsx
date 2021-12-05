@@ -3,7 +3,7 @@ import {
   HomeStackParamList,
   HomeStackScreens,
 } from 'navigation/Navigation.types';
-import { getPlacesByType } from '../../network/GoogleMapsAPI';
+import { getPlacesByType, ILocationData } from '../../network/GoogleMapsAPI';
 import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import ActivityIndicator from 'components/ActivityIndicator';
@@ -19,11 +19,13 @@ export type CategoriesScreenRoutingProps = StackScreenProps<
 
 interface ICategoriesScreenProps extends CategoriesScreenRoutingProps {}
 
-const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
+const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
   const context = useContext(AppContext);
 
-  const [allPlaces, setAllPlaces] = useState<any>(null);
-  const [filteredPlaces, setFilteredPlaces] = useState<any>(null);
+  const [allPlaces, setAllPlaces] = useState<ILocationData[] | null>(null);
+  const [filteredPlaces, setFilteredPlaces] = useState<ILocationData[] | null>(
+    null
+  );
   const [loading, setLoading] = useState(false);
   const { categoryType } = route.params;
 
@@ -98,7 +100,15 @@ const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
           )
           .map((currentPlace) => {
             return (
-              <Card key={`${currentPlace.place_id}`}>
+              // Add accessibility info
+              <Card
+                key={`${currentPlace.place_id}`}
+                onPress={() =>
+                  navigation.navigate(HomeStackScreens.CategoryScreen, {
+                    categoryItem: currentPlace,
+                  })
+                }
+              >
                 <Card.Content>
                   <Title>{currentPlace.name}</Title>
                   <Paragraph>{currentPlace.distance} miles away</Paragraph>

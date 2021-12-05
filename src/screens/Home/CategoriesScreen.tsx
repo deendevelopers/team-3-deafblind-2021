@@ -3,12 +3,12 @@ import {
   HomeStackParamList,
   HomeStackScreens,
 } from 'navigation/Navigation.types';
-import { getPlacesByType } from '../../network/GoogleMapsAPI';
+import { getPlacesByType, ILocationData } from '../../network/GoogleMapsAPI';
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import ActivityIndicator from 'components/ActivityIndicator';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { storeData, getData, removeValue } from '../../storage/storageMethods';
+import { storeData, getData } from '../../storage/storageMethods';
 
 export type CategoriesScreenRoutingProps = StackScreenProps<
   HomeStackParamList,
@@ -17,8 +17,11 @@ export type CategoriesScreenRoutingProps = StackScreenProps<
 
 interface ICategoriesScreenProps extends CategoriesScreenRoutingProps {}
 
-const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
-  const [allPlaces, setAllPlaces] = useState<any>(null);
+const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
+  const [allPlaces, setAllPlaces] = useState<ILocationData[] | null>(null);
+  const [filteredPlaces, setFilteredPlaces] = useState<ILocationData[] | null>(
+    null
+  );
   const [, setLoading] = useState(false);
   const { categoryType } = route.params;
 
@@ -31,7 +34,6 @@ const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
   useEffect(() => {
     setLoading(true);
     (async () => {
-      // Get data from local storage
       const storedData = await getStoredData();
 
       // No stored API data - do a new fetch & store the data
@@ -40,7 +42,7 @@ const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
         const response = await getPlacesByType(categoryType);
         setAllPlaces(response);
         await storeData({
-          categoryType: response,
+          [`${categoryType}`]: response,
         });
         setLoading(false);
         return;
@@ -59,7 +61,7 @@ const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
       setAllPlaces(response);
       const combinedData = {
         ...storedData,
-        categoryType: response,
+        [`${categoryType}`]: response,
       };
 
       await storeData(combinedData);
@@ -67,20 +69,48 @@ const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
     })();
   }, []);
 
+  useEffect(() => {
+    const final = allPlaces
+      ?.map((item) => {
+        const newData = {
+          ...item,
+          accessibility: {
+            wheelchair: true,
+            parking: true,
+            inductionLoop: true,
+            lighting: true,
+          },
+        };
+
+        return newData;
+      })
+      .slice(0, 5);
+
+    setFilteredPlaces(final);
+  }, [allPlaces]);
+
   return (
     // TODO: Convert to a FlatList
     <ScrollView>
-      {!allPlaces ? (
+      {!filteredPlaces ? (
         <ActivityIndicator />
       ) : (
-        allPlaces
+        filteredPlaces
           .sort(
             (firstItem, secondItem) => firstItem.distance > secondItem.distance
           )
           .map((currentPlace) => {
-            console.log(currentPlace.distance);
             return (
-              <Card key={`${currentPlace.place_id}`}>
+              // Add accessibility info
+              <Card
+                key={`${currentPlace.place_id}`}
+                onPress={() =>
+                  navigation.navigate(HomeStackScreens.CategoryScreen, {
+                    categoryItem: currentPlace,
+                    categoryType,
+                  })
+                }
+              >
                 <Card.Content>
                   <Title>{currentPlace.name}</Title>
                   <Paragraph>{currentPlace.distance} miles away</Paragraph>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import {
   Provider as PaperProvider,
@@ -39,33 +39,38 @@ const MyTheme = {
   },
 };
 
-const App = () => (
-  <AppContext.Provider
-    value={{
-      locationData: {},
-    }}
-  >
-    <PaperProvider theme={theme}>
-      <NavigationContainer theme={MyTheme}>
-        {/* Show landing only once (use async storage to store boolean) */}
-        <Stack.Navigator initialRouteName='LandingScreen'>
-          <Stack.Screen
-            name={OnboardingScreens.LandingScreen}
-            component={LandingScreen}
-          />
-          <Stack.Screen
-            name={OnboardingScreens.LocationScreen}
-            component={LocationScreen}
-          />
-          <Stack.Screen
-            name={Navigators.MainNavigator}
-            component={MainApp}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </PaperProvider>
-  </AppContext.Provider>
-);
+const App = () => {
+  const [locationData, setLocationData] = useState({});
+
+  return (
+    <AppContext.Provider
+      value={{
+        locationData,
+        setLocationData,
+      }}
+    >
+      <PaperProvider theme={theme}>
+        <NavigationContainer theme={MyTheme}>
+          {/* Show landing only once (use async storage to store boolean) */}
+          <Stack.Navigator initialRouteName='LandingScreen'>
+            <Stack.Screen
+              name={OnboardingScreens.LandingScreen}
+              component={LandingScreen}
+            />
+            <Stack.Screen
+              name={OnboardingScreens.LocationScreen}
+              component={LocationScreen}
+            />
+            <Stack.Screen
+              name={Navigators.MainNavigator}
+              component={MainApp}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </AppContext.Provider>
+  );
+};
 
 export default App;

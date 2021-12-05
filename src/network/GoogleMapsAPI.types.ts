@@ -8,3 +8,7 @@ export enum types {
   bus_station = 'bus_station',
   park = 'park',
 }
+
+export enum typeFormatted {
+  'pharmacy' = 'Pharmacy',
+}

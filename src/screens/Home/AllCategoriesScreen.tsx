@@ -57,6 +57,11 @@ const AllCategoriesScreen = ({
           accessibilityLabel='View pharmacies'
           accessibilityHint='Navigates to the screen where you can view pharmacies near you'
           accessibilityRole='button'
+          onPress={() =>
+            navigation.navigate(HomeStackScreens.CategoriesScreen, {
+              categoryType: types.pharmacy,
+            })
+          }
         >
           <Card.Content style={styles.cardContainer}>
             <View style={styles.iconContainer}>

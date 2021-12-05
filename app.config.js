@@ -20,7 +20,10 @@ const configs = {
       },
       assetBundlePatterns: ['**/*'],
       ios: {
-        supportsTablet: true,
+        bundleIdentifier: 'com.accessmycity.app',
+      },
+      android: {
+        package: 'com.accessmycity.app',
       },
       web: {
         favicon: './assets/favicon.png',
@@ -47,7 +50,10 @@ const configs = {
       },
       assetBundlePatterns: ['**/*'],
       ios: {
-        supportsTablet: true,
+        bundleIdentifier: 'com.accessmycity.app',
+      },
+      android: {
+        package: 'com.accessmycity.app',
       },
       web: {
         favicon: './assets/favicon.png',

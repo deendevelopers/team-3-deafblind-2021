@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
-const appPath = path.resolve(__dirname, '..', 'app.json');
+const appPath = path.resolve(__dirname, '../../', 'app.json');
 const appJSON = fs.readFileSync(appPath, 'utf8');
 const currentVersion = /"version": "([^"]*)/gm.exec(appJSON)[1] || '0.0.0';
 const versionParts = currentVersion.split('.');

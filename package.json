@@ -11,7 +11,8 @@
     "lint": "tsc --noEmit && eslint .",
     "pretty": "prettier --write .",
     "husky:prepare": "husky install",
-    "pre-commit": "pretty-quick --staged"
+    "pre-commit": "pretty-quick --staged",
+    "publish:expo": "node ./src/utils/publishToExpo.ts"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "~1.15.0",

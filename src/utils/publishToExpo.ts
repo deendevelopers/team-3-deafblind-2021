@@ -10,7 +10,7 @@ console.log(`Logging in: ${username}...\n`);
 execSync(`yes Y | expo login -u ${username} -p ${password}`, {
   stdio: 'inherit',
 });
-execSync('node ./bin/bumpMinorVersion', { stdio: 'inherit' });
+execSync('node ./src/utils/bumpMinorVersion.ts', { stdio: 'inherit' });
 
 console.log('Running Expo Publish');
 execSync(`yes Y | expo publish --release-channel ${releaseChannel}`, {

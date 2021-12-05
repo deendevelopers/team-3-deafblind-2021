@@ -19,7 +19,7 @@ interface ICategoriesScreenProps extends CategoriesScreenRoutingProps {}
 
 const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
   const [allPlaces, setAllPlaces] = useState<any>(null);
-  const [, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { categoryType } = route.params;
 
   const getStoredData = async () => {
@@ -40,7 +40,7 @@ const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
         const response = await getPlacesByType(categoryType);
         setAllPlaces(response);
         await storeData({
-          categoryType: response,
+          [`${categoryType}`]: response,
         });
         setLoading(false);
         return;
@@ -78,7 +78,6 @@ const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
             (firstItem, secondItem) => firstItem.distance > secondItem.distance
           )
           .map((currentPlace) => {
-            console.log(currentPlace.distance);
             return (
               <Card key={`${currentPlace.place_id}`}>
                 <Card.Content>

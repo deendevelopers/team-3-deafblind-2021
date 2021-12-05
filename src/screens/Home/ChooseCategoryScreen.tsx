@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import { Button, TextInput } from 'react-native-paper';
 import { StackScreenProps } from '@react-navigation/stack';
 import {
   CATEGORIES,
@@ -17,7 +18,7 @@ export type ChooseCategoryRoutingProps = StackScreenProps<
   HomeStackScreens.ChooseCategoryScreen
 >;
 
-interface IChooseCategoryScreenProps extends ChooseCategoryRoutingProps {}
+interface IChooseCategoryScreenProps extends ChooseCategoryRoutingProps { }
 
 const ChooseCategoryScreen = ({
   navigation,
@@ -25,10 +26,24 @@ const ChooseCategoryScreen = ({
 }: IChooseCategoryScreenProps) => {
   return (
     <View>
-      <Title>Choose a category</Title>
+      <Text style={styles.currentLocation}>My Current Location</Text>
+
+      <View>
+        <Text style={styles.placeLabel}>
+          Search for a place
+        </Text>
+        <TextInput
+          style={styles.placeInput}
+          accessibilityLabel="Enter a place name"
+          underlineColor="transparent"
+        />
+      </View>
+
+      <Text style={styles.categoryLabel}>Choose a category</Text>
       <View>
         <Card
           accessible
+          style={styles.cardElement}
           accessibilityLabel='View places'
           accessibilityHint='Navigates to the places screen'
           accessibilityRole='button'
@@ -42,12 +57,14 @@ const ChooseCategoryScreen = ({
             <View style={styles.iconContainer}>
               <Bank color={colors.tertiary} size={30} />
             </View>
-            <Title>Places</Title>
+            <Title style={styles.cardTitles}>Places</Title>
           </Card.Content>
         </Card>
 
+
         <Card
           accessible
+          style={styles.cardElement}
           accessibilityLabel='View activities'
           accessibilityHint='Navigates to the activities screen'
           accessibilityRole='button'
@@ -73,8 +90,50 @@ const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    height: 100,
+  },
+  cardElement: {
+    borderRadius: 20,
+    paddingLeft: 10,
+    marginBottom: 10,
+    width: '90%',
+    alignSelf: 'center',
+  },
+  cardTitles: {
+    fontSize: 18
   },
   iconContainer: { marginRight: 15 },
+  currentLocation: {
+    alignSelf: 'flex-end',
+    marginTop: 5,
+    marginRight: 5,
+    fontSize: 14,
+    color: '#595959'
+  },
+  categoryLabel: {
+    marginLeft: 20,
+    marginBottom: 10,
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#2D2D2D'
+  },
+  placeInput: {
+    justifyContent: 'flex-end',
+    alignSelf: 'center',
+    width: '90%',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderRadius: 20,
+    backgroundColor: 'white',
+    marginBottom: 30,
+    // underlineColor: 'transparent'
+  },
+  placeLabel: {
+    marginLeft: 20,
+    paddingBottom: 5,
+    fontSize: 18,
+    fontWeight: '700',
+  },
 });
 
 export default ChooseCategoryScreen;

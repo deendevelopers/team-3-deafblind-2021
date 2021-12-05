@@ -76,12 +76,17 @@ const AllCategoriesScreen = ({
           accessibilityLabel='View banks'
           accessibilityHint='Navigates to the screen where you can view banks near you'
           accessibilityRole='button'
+          onPress={() =>
+            navigation.navigate(HomeStackScreens.CategoriesScreen, {
+              categoryType: types.bank,
+            })
+          }
         >
           <Card.Content style={styles.cardContainer}>
             <View style={styles.iconContainer}>
               <Palette color={colors.tertiary} size={30} />
             </View>
-            <Title>Banks, Finance</Title>
+            <Title>Banks</Title>
           </Card.Content>
         </Card>
 
@@ -90,26 +95,17 @@ const AllCategoriesScreen = ({
           accessibilityLabel='View supermarkets'
           accessibilityHint='Navigates to the screen where you can view supermarkets near you'
           accessibilityRole='button'
+          onPress={() =>
+            navigation.navigate(HomeStackScreens.CategoriesScreen, {
+              categoryType: types.supermarket,
+            })
+          }
         >
           <Card.Content style={styles.cardContainer}>
             <View style={styles.iconContainer}>
               <Palette color={colors.tertiary} size={30} />
             </View>
             <Title>Supermarkets</Title>
-          </Card.Content>
-        </Card>
-
-        <Card
-          accessible
-          accessibilityLabel='View parks and recreational areas'
-          accessibilityHint='Navigates to the screen where you can view parks and recreational areas near you'
-          accessibilityRole='button'
-        >
-          <Card.Content style={styles.cardContainer}>
-            <View style={styles.iconContainer}>
-              <Palette color={colors.tertiary} size={30} />
-            </View>
-            <Title>Parks and Recreation</Title>
           </Card.Content>
         </Card>
       </View>

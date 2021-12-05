@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { CATEGORIES, HomeStackParamList } from 'navigation/HomeStackScreen';
+import { CATEGORIES } from 'navigation/HomeStackScreen';
 import { StackScreenProps } from '@react-navigation/stack';
-import { HomeStackScreens } from 'navigation/Navigation.types';
+import {
+  HomeStackParamList,
+  HomeStackScreens,
+} from 'navigation/Navigation.types';
 import { AppContext } from '../../state/context';
 import { Card, Paragraph, Subheading, Title } from 'react-native-paper';
 import Bank from 'icons/Bank';

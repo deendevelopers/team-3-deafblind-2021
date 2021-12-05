@@ -19,3 +19,10 @@ export enum HomeStackScreens {
 export enum SettingsStackScreens {
   SettingsScreen = 'SettingsScreen',
 }
+
+export type HomeStackParamList = {
+  [HomeStackScreens.ChooseCategoryScreen]: undefined;
+  [HomeStackScreens.AllCategoriesScreen]: { category: CATEGORIES };
+  [HomeStackScreens.CategoriesScreen]: { categoryType: types };
+  [HomeStackScreens.CategoryScreen]: undefined;
+};

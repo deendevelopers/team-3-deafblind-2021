@@ -1,5 +1,6 @@
 export enum types {
   bank = 'bank',
+  restaurant = 'restaurant',
   pharmacy = 'pharmacy',
   supermarket = 'supermarket',
   store = 'store',

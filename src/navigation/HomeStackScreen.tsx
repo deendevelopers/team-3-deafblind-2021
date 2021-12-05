@@ -4,21 +4,15 @@ import AllCategoriesScreen from 'screens/Home/AllCategoriesScreen';
 import CategoriesScreen from 'screens/Home/CategoriesScreen';
 import CategoryScreen from 'screens/Home/CategoryScreen';
 import ChooseCategoryScreen from 'screens/Home/ChooseCategoryScreen';
-import { HomeStackScreens } from './Navigation.types';
+import { types } from 'src/network/GoogleMapsAPI.types';
+import { HomeStackParamList, HomeStackScreens } from './Navigation.types';
 
 interface IHomeStackScreenProps {}
 
 export enum CATEGORIES {
-  places = 'places',
-  activities = 'activities',
+  places = 'Places',
+  activities = 'Activities',
 }
-
-export type HomeStackParamList = {
-  [HomeStackScreens.ChooseCategoryScreen]: undefined;
-  [HomeStackScreens.AllCategoriesScreen]: { category: CATEGORIES };
-  [HomeStackScreens.CategoriesScreen]: undefined;
-  [HomeStackScreens.CategoryScreen]: undefined;
-};
 
 const HomeStackScreen = (props: IHomeStackScreenProps) => {
   const Stack = createStackNavigator<HomeStackParamList>();

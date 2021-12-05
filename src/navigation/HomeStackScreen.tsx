@@ -1,5 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
+import { View } from 'react-native';
 import AllCategoriesScreen from 'screens/Home/AllCategoriesScreen';
 import CategoriesScreen from 'screens/Home/CategoriesScreen';
 import CategoryScreen from 'screens/Home/CategoryScreen';
@@ -22,6 +23,9 @@ const HomeStackScreen = (props: IHomeStackScreenProps) => {
       <Stack.Screen
         name={HomeStackScreens.ChooseCategoryScreen}
         component={ChooseCategoryScreen}
+        options={{
+          headerLeft: () => null,
+        }}
       />
       <Stack.Screen
         name={HomeStackScreens.AllCategoriesScreen}

@@ -67,10 +67,16 @@ const App = () => {
             <Stack.Screen
               name={OnboardingScreens.LandingScreen}
               component={LandingScreen}
+              options={{
+                headerShown: false,
+              }}
             />
             <Stack.Screen
               name={OnboardingScreens.LocationScreen}
               component={LocationScreen}
+              options={{
+                headerShown: false,
+              }}
             />
             <Stack.Screen
               name={Navigators.MainNavigator}

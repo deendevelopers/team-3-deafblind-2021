@@ -1,69 +1,121 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import { Navigators, OnboardingScreens } from 'navigation/Navigation.types';
 import { OnboardingScreenParamList } from 'navigation/Navigator';
-import React from 'react';
-import { Button, TextInput } from 'react-native-paper';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Button, Paragraph, TextInput } from 'react-native-paper';
+import {
+  View,
+  Text,
+  StyleSheet,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import colors from 'theme/colors';
+import ArrowRight from 'icons/ArrowRight';
 
 export type LocationScreenRoutingProps = StackScreenProps<
   OnboardingScreenParamList,
   OnboardingScreens.LocationScreen
 >;
 
-interface ILocationScreenProps extends LocationScreenRoutingProps { }
+interface ILocationScreenProps extends LocationScreenRoutingProps {}
 
 const LocationScreen = ({ navigation }: ILocationScreenProps) => {
+  const [input, setInput] = useState('');
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{ flex: 1 }}
+    >
+      <ScrollView>
+        <View style={styles.iconText}>
+          <View style={[styles.centre, { marginBottom: 30 }]}>
+            <Text style={styles.title}>Find the best places {'\n'} around</Text>
+            <Text>We will need your permission</Text>
+          </View>
 
-      <View style={styles.iconText}>
-
-        <View style={styles.centre}>
-          <Text style={styles.title}>Find the best places {'\n'} around</Text>
-          <Text>We need your permission</Text>
+          <View style={styles.icon}>
+            <Icon name='map-marker-alt' size={100} color='#F27F3E'></Icon>
+          </View>
         </View>
 
-        <View style={styles.icon}>
-          <Icon name="map-marker-alt" size={100} color="#F27F3E"></Icon>
+        <View
+          style={{
+            marginTop: 100,
+          }}
+        >
+          <View>
+            <Text style={styles.postcodeLabel}>Enter Postcode</Text>
+
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <TextInput
+                style={styles.postcodeInput}
+                accessibilityLabel='Postcode'
+                placeholder='E14 7QY'
+                placeholderTextColor='#A6A6A6'
+                // underlineColor='transparent'
+                mode='outlined'
+                value={input}
+                onChangeText={(text) => setInput(text)}
+                theme={{
+                  colors: {
+                    primary: colors.primary,
+                    underlineColor: colors.primary,
+                  },
+                }}
+              />
+              <TouchableOpacity
+                onPress={() => navigation.navigate(Navigators.MainNavigator)}
+                style={{
+                  marginLeft: 10,
+                }}
+              >
+                <ArrowRight color={colors.primary} size={30} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <Paragraph
+            style={{
+              textAlign: 'center',
+              fontSize: 20,
+              paddingTop: 20,
+            }}
+          >
+            Or
+          </Paragraph>
+
+          <View style={styles.ctaButtonContainer}>
+            <Button
+              icon='map-marker'
+              mode='contained'
+              uppercase={false}
+              style={styles.ctaButton}
+              contentStyle={styles.ctaButtonInner}
+              labelStyle={styles.ctaButtonText}
+              onPress={() => navigation.navigate(Navigators.MainNavigator)}
+            >
+              Use My Current Location
+            </Button>
+          </View>
         </View>
-
-      </View>
-
-      <View>
-        <Text style={styles.postcodeLabel}>
-          Enter Postcode
-        </Text>
-        <TextInput
-          style={styles.postcodeInput}
-          accessibilityLabel="Postcode"
-          placeholder="E14 7QY"
-          placeholderTextColor="#A6A6A6"
-          underlineColor="transparent"
-
-        />
-      </View>
-
-      <View style={styles.ctaButtonContainer}>
-        <Button
-          icon="map-marker"
-          mode="contained"
-          uppercase={false}
-          style={styles.ctaButton}
-          contentStyle={styles.ctaButtonInner}
-          labelStyle={styles.ctaButtonText}
-          onPress={() => navigation.navigate(Navigators.MainNavigator)}>
-          Use My Current Location
-        </Button>
-      </View>
-
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'space-between',
   },
   postcodeInput: {
@@ -72,12 +124,13 @@ const styles = StyleSheet.create({
     width: 300,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    borderColor: colors.primary,
     borderRadius: 20,
     backgroundColor: 'white',
     // underlineColor: 'transparent'
   },
   postcodeLabel: {
-    marginLeft: 65,
+    marginLeft: 40,
     paddingBottom: 5,
     fontSize: 16,
     fontWeight: '500',
@@ -106,6 +159,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 100,
     width: 300,
+    paddingTop: 20,
   },
   ctaButtonInner: {
     height: 70,
@@ -119,8 +173,8 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: 'center',
   },
-})
+});
 
 export default LocationScreen;

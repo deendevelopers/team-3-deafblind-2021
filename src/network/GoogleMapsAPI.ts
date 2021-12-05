@@ -23,15 +23,25 @@ import { types } from './GoogleMapsAPI.types';
 */
 
 // Hardcoded location (Piccadilly Circus, London) - in future pass in user's coordinates
-const lat = '51.510084785550006';
-const lng = '-0.13502325923340425';
+export const lat = '51.510084785550006';
+export const lng = '-0.13502325923340425';
 
+export interface IAccessibilityInfo {
+  wheelchair: boolean;
+  parking: boolean;
+  inductionLoop: boolean;
+  lighting: boolean;
+}
 export interface ILocationData {
   place_id: string;
   name: string;
   photos: object;
   location: string;
+  lat: string;
+  lng: string;
   distance: number;
+  accessibility?: IAccessibilityInfo;
+  contact: string;
 }
 
 export async function getPlacesByType(type: types = types.bank) {
@@ -44,7 +54,10 @@ export async function getPlacesByType(type: types = types.bank) {
       return console.log(response.data.error_message);
 
     const transformedData: ILocationData[] = response.data.results.map(
-      async ({ place_id, name, photos, geometry }, index) => {
+      async (
+        { place_id, name, photos, geometry, formatted_phone_number },
+        index
+      ) => {
         const currentLocationAddress = await getAddress(
           geometry.location.lat,
           geometry.location.lng
@@ -56,8 +69,11 @@ export async function getPlacesByType(type: types = types.bank) {
           place_id,
           name,
           photos,
-          location: currentLocationAddress,
+          location: currentLocationAddress?.formattedAddress,
+          lat: currentLocationAddress?.lat,
+          lng: currentLocationAddress?.lng,
           distance: (currentDistance / 10).toFixed(2),
+          contact: formatted_phone_number,
         };
       }
     );
@@ -76,7 +92,11 @@ async function getAddress(lat: string, lng: string) {
       await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}
    `);
 
-    return response.data.results[0].formatted_address;
+    return {
+      formattedAddress: response.data.results[0].formatted_address,
+      lat: response.data.results[0].geometry.location.lat,
+      lng: response.data.results[0].geometry.location.lng,
+    };
   } catch (error) {
     console.warn('getAddress: Error fetching address');
     console.log(error);
@@ -94,6 +114,27 @@ async function getDistanceToPlace(placeId: string) {
     return kmToMiles(response.data.rows[0].elements[0].distance.value);
   } catch (error) {
     console.warn('getAddress: Error fetching address');
+    console.log(error);
+  }
+}
+
+export async function getPlacePhoto(photoReference: string) {
+  try {
+    console.log(
+      `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${encodeURIComponent(
+        photoReference
+      )}&key=${GOOGLE_MAPS_API_KEY}`
+    );
+    // const response = await axios.get(
+    //   `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${encodeURIComponent(
+    //     photoReference
+    //   )}&key=${GOOGLE_MAPS_API_KEY}`
+    // );
+
+    // console.log('Photo Response:');
+    // console.log(response);
+  } catch (error) {
+    console.warn('getPlacePhoto: Error fetching photo');
     console.log(error);
   }
 }

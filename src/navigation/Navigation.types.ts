@@ -27,7 +27,10 @@ export type HomeStackParamList = {
   [HomeStackScreens.ChooseCategoryScreen]: undefined;
   [HomeStackScreens.AllCategoriesScreen]: { category: CATEGORIES };
   [HomeStackScreens.CategoriesScreen]: { categoryType: types };
-  [HomeStackScreens.CategoryScreen]: { categoryItem: ILocationData };
+  [HomeStackScreens.CategoryScreen]: {
+    categoryItem: ILocationData;
+    categoryType: types;
+  };
 };
 
 export enum CATEGORIES {

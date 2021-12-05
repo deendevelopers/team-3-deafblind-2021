@@ -20,8 +20,6 @@ export type CategoriesScreenRoutingProps = StackScreenProps<
 interface ICategoriesScreenProps extends CategoriesScreenRoutingProps {}
 
 const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
-  const context = useContext(AppContext);
-
   const [allPlaces, setAllPlaces] = useState<ILocationData[] | null>(null);
   const [filteredPlaces, setFilteredPlaces] = useState<ILocationData[] | null>(
     null
@@ -76,15 +74,30 @@ const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
 
   // Store specific types of each venue (pre-picked to hardcode)
   useEffect(() => {
-    console.log(allPlaces);
     if (categoryType === types.pharmacy) {
-      const pharmacyIDs = ['ChIJG6dE2CwFdkgROcOcqlAKQmo'];
+      const pharmacyIDs = [
+        'ChIJG6dE2CwFdkgROcOcqlAKQmo',
+        'ChIJcXNbKIQcdkgRPWnDEJdImuc',
+      ];
       const filteredPlaces = allPlaces?.filter((item) => {
         return pharmacyIDs.includes(item.place_id);
       });
-      console.log('FILTERED:');
-      console.log(filteredPlaces);
-      setFilteredPlaces(filteredPlaces);
+
+      const final = filteredPlaces?.map((item) => {
+        const newData = {
+          ...item,
+          accessibility: {
+            wheelchair: true,
+            parking: true,
+            inductionLoop: false,
+            lighting: false,
+          },
+        };
+
+        return newData;
+      });
+
+      setFilteredPlaces(final);
     }
   }, [allPlaces]);
 
@@ -106,6 +119,7 @@ const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
                 onPress={() =>
                   navigation.navigate(HomeStackScreens.CategoryScreen, {
                     categoryItem: currentPlace,
+                    categoryType,
                   })
                 }
               >

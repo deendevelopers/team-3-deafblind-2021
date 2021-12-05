@@ -4,7 +4,6 @@ import AllCategoriesScreen from 'screens/Home/AllCategoriesScreen';
 import CategoriesScreen from 'screens/Home/CategoriesScreen';
 import CategoryScreen from 'screens/Home/CategoryScreen';
 import ChooseCategoryScreen from 'screens/Home/ChooseCategoryScreen';
-import { types } from 'src/network/GoogleMapsAPI.types';
 import { HomeStackParamList, HomeStackScreens } from './Navigation.types';
 
 interface IHomeStackScreenProps {}

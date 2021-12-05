@@ -12,7 +12,13 @@ const HomeStackScreen = (props: IHomeStackScreenProps) => {
   const Stack = createStackNavigator<HomeStackParamList>();
 
   return (
-    <Stack.Navigator initialRouteName={HomeStackScreens.ChooseCategoryScreen}>
+    <Stack.Navigator
+      initialRouteName={HomeStackScreens.ChooseCategoryScreen}
+      screenOptions={{
+        headerBackTitleVisible: true,
+        headerTintColor: 'white',
+      }}
+    >
       <Stack.Screen
         name={HomeStackScreens.ChooseCategoryScreen}
         component={ChooseCategoryScreen}

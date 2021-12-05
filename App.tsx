@@ -25,6 +25,7 @@ const theme = {
     primary: colors.primary,
     accent: colors.tertiary,
     text: 'black',
+    background: 'white',
   },
 };
 
@@ -34,7 +35,7 @@ const MyTheme = {
   colors: {
     ...DefaultTheme.colors,
     primary: colors.primary,
-    background: '#F4F3EF',
+    background: 'white',
     card: '#112E51',
     text: 'white',
   },

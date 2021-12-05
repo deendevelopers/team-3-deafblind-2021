@@ -14,9 +14,9 @@ export enum OnboardingScreens {
 
 export enum HomeStackScreens {
   ChooseCategoryScreen = 'Choose Category',
-  AllCategoriesScreen = 'AllCategoriesScreen',
-  CategoriesScreen = 'CategoriesScreen',
-  CategoryScreen = 'CategoryScreen',
+  AllCategoriesScreen = 'All Categories',
+  CategoriesScreen = 'Categories',
+  CategoryScreen = 'Category',
 }
 
 export enum SettingsStackScreens {

@@ -31,8 +31,6 @@ const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
   useEffect(() => {
     setLoading(true);
     (async () => {
-      await removeValue();
-
       // Get data from local storage
       const storedData = await getStoredData();
 

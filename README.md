@@ -14,9 +14,9 @@ The user will then be displayed with the accessibility features and the contact 
 - Google Maps API provides the contact details and the location of the venue
 - The app allows you to call the venue directly with a button press
 - The app allows you to get directions through the navigation app installed on the phone
-- User can search for venues in London
+- User can search for venues in London (currently: hardcoded location)
 
-## In Process
+## In Progress
 - User Input Form which will gather accessibility data for venues
 - To enter current postcode and search for data near their location
 - Gather data of different venues and the accessibility features they have

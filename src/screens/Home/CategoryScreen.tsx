@@ -48,54 +48,74 @@ const CategoryScreen = ({ navigation, route }: ICategoryScreenProps) => {
   const renderImage = () => {
     if (categoryType === types.restaurant) {
       return (
-        <Image
-          source={require('../../../assets/restaurant.jpeg')}
-          style={{
-            width: '100%',
-            height: undefined,
-            aspectRatio: 1,
-          }}
+        <View
           accessibilityLabel='food served on a plate at a restaurant'
-        />
+          accessibilityRole='image'
+        >
+          <Image
+            source={require('../../../assets/restaurant.jpeg')}
+            style={{
+              width: '100%',
+              height: undefined,
+              aspectRatio: 1,
+            }}
+            accessibilityLabel='food served on a plate at a restaurant'
+          />
+        </View>
       );
     }
     if (categoryType === types.supermarket) {
       return (
-        <Image
-          source={require('../../../assets/supermarket.jpeg')}
-          style={{
-            width: '100%',
-            height: undefined,
-            aspectRatio: 1,
-          }}
+        <View
           accessibilityLabel='supermarket aisle with products on the left and right hand side'
-        />
+          accessibilityRole='image'
+        >
+          <Image
+            source={require('../../../assets/supermarket.jpeg')}
+            style={{
+              width: '100%',
+              height: undefined,
+              aspectRatio: 1,
+            }}
+            accessibilityLabel='supermarket aisle with products on the left and right hand side'
+          />
+        </View>
       );
     }
     if (categoryType === types.pharmacy) {
       return (
-        <Image
-          source={require('../../../assets/pharmacy.jpeg')}
-          style={{
-            width: '100%',
-            height: undefined,
-            aspectRatio: 1,
-          }}
+        <View
+          accessibilityRole='image'
           accessibilityLabel='pharmacy shelves stocked with pharmaceutical products'
-        />
+        >
+          <Image
+            source={require('../../../assets/pharmacy.jpeg')}
+            style={{
+              width: '100%',
+              height: undefined,
+              aspectRatio: 1,
+            }}
+            accessibilityLabel='pharmacy shelves stocked with pharmaceutical products'
+          />
+        </View>
       );
     }
     if (categoryType === types.bank) {
       return (
-        <Image
-          source={require('../../../assets/bank.jpeg')}
-          style={{
-            width: '100%',
-            height: undefined,
-            aspectRatio: 1,
-          }}
+        <View
+          accessibilityRole='image'
           accessibilityLabel='outer exterior of a bank'
-        />
+        >
+          <Image
+            source={require('../../../assets/bank.jpeg')}
+            style={{
+              width: '100%',
+              height: undefined,
+              aspectRatio: 1,
+            }}
+            accessibilityLabel='outer exterior of a bank'
+          />
+        </View>
       );
     }
   };

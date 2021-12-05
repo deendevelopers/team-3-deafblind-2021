@@ -13,6 +13,7 @@ module.exports = function (api) {
             theme: './src/theme',
             state: './src/state',
             icons: './src/icons',
+            network: './src/network',
           },
         },
       ],

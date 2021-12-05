@@ -1,14 +1,132 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
+import Palette from 'icons/Palette';
+import { CATEGORIES } from 'navigation/HomeStackScreen';
+import {
+  HomeStackParamList,
+  HomeStackScreens,
+} from 'navigation/Navigation.types';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Card, Title } from 'react-native-paper';
+import { types } from '../../network/GoogleMapsAPI.types';
+import colors from 'theme/colors';
 
-interface IAllCategoriesScreenProps {}
+export type AllCategoriesRoutingProps = StackScreenProps<
+  HomeStackParamList,
+  HomeStackScreens.AllCategoriesScreen
+>;
 
-const AllCategoriesScreen = (props: IAllCategoriesScreenProps) => {
+interface IAllCategoriesScreenProps extends AllCategoriesRoutingProps {}
+
+const AllCategoriesScreen = ({
+  navigation,
+  route,
+}: IAllCategoriesScreenProps) => {
+  const { category } = route.params;
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: category,
+    });
+  }, []);
+
+  const renderPlaces = () => {
+    return (
+      <View>
+        <Card
+          accessible
+          accessibilityLabel='View restaurants'
+          accessibilityHint='Navigates to the screen where you can view restaurants near you'
+          accessibilityRole='button'
+          onPress={() =>
+            navigation.navigate(HomeStackScreens.CategoriesScreen, {
+              categoryType: types.restaurant,
+            })
+          }
+        >
+          <Card.Content style={styles.cardContainer}>
+            <View style={styles.iconContainer}>
+              <Palette color={colors.tertiary} size={30} />
+            </View>
+            <Title>Restaurants</Title>
+          </Card.Content>
+        </Card>
+
+        <Card
+          accessible
+          accessibilityLabel='View pharmacies'
+          accessibilityHint='Navigates to the screen where you can view pharmacies near you'
+          accessibilityRole='button'
+        >
+          <Card.Content style={styles.cardContainer}>
+            <View style={styles.iconContainer}>
+              <Palette color={colors.tertiary} size={30} />
+            </View>
+            <Title>Pharmacy, Health</Title>
+          </Card.Content>
+        </Card>
+
+        <Card
+          accessible
+          accessibilityLabel='View banks'
+          accessibilityHint='Navigates to the screen where you can view banks near you'
+          accessibilityRole='button'
+        >
+          <Card.Content style={styles.cardContainer}>
+            <View style={styles.iconContainer}>
+              <Palette color={colors.tertiary} size={30} />
+            </View>
+            <Title>Banks, Finance</Title>
+          </Card.Content>
+        </Card>
+
+        <Card
+          accessible
+          accessibilityLabel='View supermarkets'
+          accessibilityHint='Navigates to the screen where you can view supermarkets near you'
+          accessibilityRole='button'
+        >
+          <Card.Content style={styles.cardContainer}>
+            <View style={styles.iconContainer}>
+              <Palette color={colors.tertiary} size={30} />
+            </View>
+            <Title>Supermarkets</Title>
+          </Card.Content>
+        </Card>
+
+        <Card
+          accessible
+          accessibilityLabel='View parks and recreational areas'
+          accessibilityHint='Navigates to the screen where you can view parks and recreational areas near you'
+          accessibilityRole='button'
+        >
+          <Card.Content style={styles.cardContainer}>
+            <View style={styles.iconContainer}>
+              <Palette color={colors.tertiary} size={30} />
+            </View>
+            <Title>Parks and Recreation</Title>
+          </Card.Content>
+        </Card>
+      </View>
+    );
+  };
   return (
     <View>
-      <Text>AllCategoriesScreen</Text>
+      {category === CATEGORIES.places ? (
+        renderPlaces()
+      ) : (
+        <Text>AllCategoriesScreen - {category}</Text>
+      )}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  cardContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconContainer: { marginRight: 15 },
+});
 
 export default AllCategoriesScreen;

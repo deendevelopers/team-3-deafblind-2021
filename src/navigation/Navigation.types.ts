@@ -10,7 +10,7 @@ export enum OnboardingScreens {
 }
 
 export enum HomeStackScreens {
-  ChooseCategoryScreen = 'ChooseCategoryScreen',
+  ChooseCategoryScreen = 'Choose Category',
   AllCategoriesScreen = 'AllCategoriesScreen',
   CategoriesScreen = 'CategoriesScreen',
   CategoryScreen = 'CategoryScreen',
@@ -19,3 +19,10 @@ export enum HomeStackScreens {
 export enum SettingsStackScreens {
   SettingsScreen = 'SettingsScreen',
 }
+
+export type HomeStackParamList = {
+  [HomeStackScreens.ChooseCategoryScreen]: undefined;
+  [HomeStackScreens.AllCategoriesScreen]: { category: CATEGORIES };
+  [HomeStackScreens.CategoriesScreen]: { categoryType: types };
+  [HomeStackScreens.CategoryScreen]: undefined;
+};

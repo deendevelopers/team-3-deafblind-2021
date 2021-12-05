@@ -8,7 +8,8 @@
       "components/*": ["./src/app/components/*"],
       "theme/*": ["./src/theme/*"],
       "state/*": ["./src/state/*"],
-      "icons/*": ["./src/icons/*"]
+      "icons/*": ["./src/icons/*"],
+      "network/*": ["./src/network/*"]
     },
     "useDefineForClassFields": true,
     "forceConsistentCasingInFileNames": true,

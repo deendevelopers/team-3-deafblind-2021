@@ -18,7 +18,7 @@ export type ChooseCategoryRoutingProps = StackScreenProps<
   HomeStackScreens.ChooseCategoryScreen
 >;
 
-interface IChooseCategoryScreenProps extends ChooseCategoryRoutingProps { }
+interface IChooseCategoryScreenProps extends ChooseCategoryRoutingProps {}
 
 const ChooseCategoryScreen = ({
   navigation,
@@ -26,16 +26,14 @@ const ChooseCategoryScreen = ({
 }: IChooseCategoryScreenProps) => {
   return (
     <View>
-      <Text style={styles.currentLocation}>My Current Location</Text>
+      <Text style={styles.currentLocation}>London, Piccadilly Circus</Text>
 
       <View>
-        <Text style={styles.placeLabel}>
-          Search for a place
-        </Text>
+        <Text style={styles.placeLabel}>Search for a place</Text>
         <TextInput
           style={styles.placeInput}
-          accessibilityLabel="Enter a place name"
-          underlineColor="transparent"
+          accessibilityLabel='Enter a place name'
+          underlineColor='transparent'
         />
       </View>
 
@@ -60,7 +58,6 @@ const ChooseCategoryScreen = ({
             <Title style={styles.cardTitles}>Places</Title>
           </Card.Content>
         </Card>
-
 
         <Card
           accessible
@@ -100,7 +97,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   cardTitles: {
-    fontSize: 18
+    fontSize: 18,
   },
   iconContainer: { marginRight: 15 },
   currentLocation: {
@@ -108,14 +105,14 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginRight: 5,
     fontSize: 14,
-    color: '#595959'
+    color: '#595959',
   },
   categoryLabel: {
     marginLeft: 20,
     marginBottom: 10,
     fontSize: 18,
     fontWeight: '700',
-    color: '#2D2D2D'
+    color: '#2D2D2D',
   },
   placeInput: {
     justifyContent: 'flex-end',

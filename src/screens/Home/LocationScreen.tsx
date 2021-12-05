@@ -28,84 +28,103 @@ const LocationScreen = ({ navigation }: ILocationScreenProps) => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{ flex: 1 }}
     >
       <ScrollView>
-        <View style={styles.iconText}>
-          <View style={[styles.centre, { marginBottom: 30 }]}>
-            <Text style={styles.title}>Find the best places {'\n'} around</Text>
-            <Text>We will need your permission</Text>
-          </View>
-
-          <View style={styles.icon}>
-            <Icon name='map-marker-alt' size={100} color='#F27F3E'></Icon>
-          </View>
-        </View>
-
+        {/* CONTAINER */}
         <View
           style={{
-            marginTop: 100,
+            marginTop: 60,
           }}
         >
-          <View>
-            <Text style={styles.postcodeLabel}>Enter Postcode</Text>
+          <View style={styles.iconText}>
+            <View style={[styles.centre, { marginBottom: 30 }]}>
+              <Text style={styles.title}>
+                Find the best places {'\n'} around
+              </Text>
+            </View>
 
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <TextInput
-                style={styles.postcodeInput}
-                accessibilityLabel='Postcode'
-                placeholder='E14 7QY'
-                placeholderTextColor='#A6A6A6'
-                // underlineColor='transparent'
-                mode='outlined'
-                value={input}
-                onChangeText={(text) => setInput(text)}
-                theme={{
-                  colors: {
-                    primary: colors.primary,
-                    underlineColor: colors.primary,
-                  },
-                }}
-              />
-              <TouchableOpacity
-                onPress={() => navigation.navigate(Navigators.MainNavigator)}
-                style={{
-                  marginLeft: 10,
-                }}
-              >
-                <ArrowRight color={colors.primary} size={30} />
-              </TouchableOpacity>
+            <View style={styles.icon}>
+              <Icon name='map-marker-alt' size={100} color='#F27F3E'></Icon>
             </View>
           </View>
 
-          <Paragraph
+          <View
             style={{
-              textAlign: 'center',
-              fontSize: 20,
-              paddingTop: 20,
+              marginTop: 100,
             }}
           >
-            Or
-          </Paragraph>
+            <View style={{ paddingHorizontal: 30 }}>
+              <Text>Enter Postcode</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <View style={{ flex: 11 }}>
+                  <TextInput
+                    style={styles.postcodeInput}
+                    accessibilityLabel='Postcode'
+                    placeholder='E14 7QY'
+                    placeholderTextColor='#A6A6A6'
+                    // underlineColor='transparent'
+                    mode='outlined'
+                    value={input}
+                    onChangeText={(text) => setInput(text)}
+                    theme={{
+                      colors: {
+                        primary: colors.primary,
+                        underlineColor: colors.primary,
+                      },
+                    }}
+                  />
+                </View>
 
-          <View style={styles.ctaButtonContainer}>
-            <Button
-              icon='map-marker'
-              mode='contained'
-              uppercase={false}
-              style={styles.ctaButton}
-              contentStyle={styles.ctaButtonInner}
-              labelStyle={styles.ctaButtonText}
-              onPress={() => navigation.navigate(Navigators.MainNavigator)}
+                <TouchableOpacity
+                  accessibilityLabel='Submit postcode'
+                  accessibilityHint='Navigates to the screen where you can choose a category'
+                  onPress={() => navigation.navigate(Navigators.MainNavigator)}
+                  style={{
+                    marginLeft: 10,
+                    flex: 1,
+                  }}
+                >
+                  <ArrowRight color={colors.primary} size={30} />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <Paragraph
+              style={{
+                textAlign: 'center',
+                fontSize: 20,
+                paddingTop: 20,
+              }}
             >
-              Use My Current Location
-            </Button>
+              Or
+            </Paragraph>
+
+            <View style={styles.ctaButtonContainer}>
+              <Button
+                icon='map-marker'
+                mode='contained'
+                uppercase={false}
+                style={styles.ctaButton}
+                contentStyle={styles.ctaButtonInner}
+                labelStyle={styles.ctaButtonText}
+                onPress={() => navigation.navigate(Navigators.MainNavigator)}
+              >
+                Use My Current Location
+              </Button>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  paddingTop: 5,
+                }}
+              >
+                We will need your permission to locate you
+              </Text>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -119,14 +138,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   postcodeInput: {
-    justifyContent: 'flex-end',
-    alignSelf: 'center',
-    width: 300,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderColor: colors.primary,
-    borderRadius: 20,
-    backgroundColor: 'white',
+    // justifyContent: 'flex-end',
+    // alignSelf: 'center',
+    // width: 300,
+    // borderTopLeftRadius: 20,
+    // borderTopRightRadius: 20,
+    // borderColor: colors.primary,
+    // borderRadius: 20,
+    // backgroundColor: 'white',
     // underlineColor: 'transparent'
   },
   postcodeLabel: {
@@ -136,7 +155,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   iconText: {
-    marginTop: 200,
+    // marginTop: 100,
   },
   icon: {
     marginTop: 30,
@@ -158,7 +177,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignSelf: 'center',
     marginBottom: 100,
-    width: 300,
+    width: 350,
     paddingTop: 20,
   },
   ctaButtonInner: {

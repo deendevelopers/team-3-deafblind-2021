@@ -17,7 +17,7 @@ const LandingScreen = ({ navigation }: ILandingScreenProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.iconText}>
-        <View style={styles.icon}>
+        <View style={styles.icon} accessibilityLabel='Image of an icon'>
           <Icon name='users' size={200} color='#F27F3E'></Icon>
         </View>
 
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   ctaButtonContainer: {
     justifyContent: 'flex-end',
     alignSelf: 'center',
-    marginBottom: 100,
+    marginBottom: 75,
     width: 300,
   },
   ctaButtonInner: {

@@ -21,7 +21,11 @@ const AccessibilityInfo = ({ data }: Props) => {
     <View>
       {wheelchair && (
         <View style={flexRowCentre}>
-          <View style={styles.icon}>
+          <View
+            style={styles.icon}
+            accessibilityElementsHidden
+            importantForAccessibility='no-hide-descendants'
+          >
             <Wheelchair color={colors.secondary} size={30} />
           </View>
           <Paragraph>Disabled chair access</Paragraph>
@@ -29,7 +33,11 @@ const AccessibilityInfo = ({ data }: Props) => {
       )}
       {parking && (
         <View style={flexRowCentre}>
-          <View style={styles.icon}>
+          <View
+            style={styles.icon}
+            accessibilityElementsHidden
+            importantForAccessibility='no-hide-descendants'
+          >
             <Parking color={colors.secondary} size={30} />
           </View>
 
@@ -38,7 +46,11 @@ const AccessibilityInfo = ({ data }: Props) => {
       )}
       {lighting && (
         <View style={flexRowCentre}>
-          <View style={styles.icon}>
+          <View
+            style={styles.icon}
+            accessibilityElementsHidden
+            importantForAccessibility='no-hide-descendants'
+          >
             <Eye color={colors.secondary} size={30} />
           </View>
 
@@ -47,7 +59,11 @@ const AccessibilityInfo = ({ data }: Props) => {
       )}
       {inductionLoop && (
         <View style={flexRowCentre}>
-          <View style={styles.icon}>
+          <View
+            style={styles.icon}
+            accessibilityElementsHidden
+            importantForAccessibility='no-hide-descendants'
+          >
             <Ear color={colors.secondary} size={30} />
           </View>
 

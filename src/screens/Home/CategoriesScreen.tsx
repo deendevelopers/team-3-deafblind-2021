@@ -4,11 +4,13 @@ import {
   HomeStackScreens,
 } from 'navigation/Navigation.types';
 import { getPlacesByType } from '../../network/GoogleMapsAPI';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import ActivityIndicator from 'components/ActivityIndicator';
 import { Card, Paragraph, Title } from 'react-native-paper';
 import { storeData, getData, removeValue } from '../../storage/storageMethods';
+import { AppContext } from 'state/context';
+import { types } from 'network/GoogleMapsAPI.types';
 
 export type CategoriesScreenRoutingProps = StackScreenProps<
   HomeStackParamList,
@@ -18,7 +20,10 @@ export type CategoriesScreenRoutingProps = StackScreenProps<
 interface ICategoriesScreenProps extends CategoriesScreenRoutingProps {}
 
 const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
+  const context = useContext(AppContext);
+
   const [allPlaces, setAllPlaces] = useState<any>(null);
+  const [filteredPlaces, setFilteredPlaces] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const { categoryType } = route.params;
 
@@ -67,13 +72,27 @@ const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
     })();
   }, []);
 
+  // Store specific types of each venue (pre-picked to hardcode)
+  useEffect(() => {
+    console.log(allPlaces);
+    if (categoryType === types.pharmacy) {
+      const pharmacyIDs = ['ChIJG6dE2CwFdkgROcOcqlAKQmo'];
+      const filteredPlaces = allPlaces?.filter((item) => {
+        return pharmacyIDs.includes(item.place_id);
+      });
+      console.log('FILTERED:');
+      console.log(filteredPlaces);
+      setFilteredPlaces(filteredPlaces);
+    }
+  }, [allPlaces]);
+
   return (
     // TODO: Convert to a FlatList
     <ScrollView>
-      {!allPlaces ? (
+      {!filteredPlaces ? (
         <ActivityIndicator />
       ) : (
-        allPlaces
+        filteredPlaces
           .sort(
             (firstItem, secondItem) => firstItem.distance > secondItem.distance
           )

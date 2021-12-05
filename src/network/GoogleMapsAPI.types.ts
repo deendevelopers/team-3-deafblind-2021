@@ -6,4 +6,5 @@ export enum types {
   store = 'store',
   train_station = 'train_station',
   bus_station = 'bus_station',
+  park = 'park',
 }

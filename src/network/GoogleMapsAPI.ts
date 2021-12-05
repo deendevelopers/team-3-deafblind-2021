@@ -82,7 +82,6 @@ async function getAddress(lat: string, lng: string) {
   }
 }
 
-// TODO: Carry on here.
 async function getDistanceToPlace(placeId: string) {
   try {
     const response = await axios.get(
@@ -92,7 +91,6 @@ async function getDistanceToPlace(placeId: string) {
     );
 
     return kmToMiles(response.data.rows[0].elements[0].distance.value);
-    // return response.data.rows[0].elements.distance;
   } catch (error) {
     console.warn('getAddress: Error fetching address');
     console.log(error);

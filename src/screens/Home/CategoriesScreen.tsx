@@ -68,6 +68,7 @@ const CategoriesScreen = ({ route }: ICategoriesScreenProps) => {
   }, []);
 
   return (
+    // TODO: Convert to a FlatList
     <ScrollView>
       {!allPlaces ? (
         <ActivityIndicator />

@@ -94,7 +94,6 @@ const AllCategoriesScreen = ({
           </Card.Content>
         </Card>
 
-        {/* TODO: Parks / recreation - not sure if this can be accessed in API - CHECK */}
         <Card
           accessible
           accessibilityLabel='View parks and recreational areas'

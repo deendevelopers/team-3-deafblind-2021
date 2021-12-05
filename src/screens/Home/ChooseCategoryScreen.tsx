@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { CATEGORIES } from 'navigation/HomeStackScreen';
 import { StackScreenProps } from '@react-navigation/stack';
 import {
+  CATEGORIES,
   HomeStackParamList,
   HomeStackScreens,
 } from 'navigation/Navigation.types';

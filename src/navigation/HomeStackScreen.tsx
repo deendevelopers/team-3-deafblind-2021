@@ -9,11 +9,6 @@ import { HomeStackParamList, HomeStackScreens } from './Navigation.types';
 
 interface IHomeStackScreenProps {}
 
-export enum CATEGORIES {
-  places = 'Places',
-  activities = 'Activities',
-}
-
 const HomeStackScreen = (props: IHomeStackScreenProps) => {
   const Stack = createStackNavigator<HomeStackParamList>();
 

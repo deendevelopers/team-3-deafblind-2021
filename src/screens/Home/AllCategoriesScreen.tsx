@@ -1,7 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import Palette from 'icons/Palette';
-import { CATEGORIES } from 'navigation/HomeStackScreen';
 import {
+  CATEGORIES,
   HomeStackParamList,
   HomeStackScreens,
 } from 'navigation/Navigation.types';

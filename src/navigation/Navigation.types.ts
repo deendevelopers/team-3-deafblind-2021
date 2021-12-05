@@ -26,3 +26,8 @@ export type HomeStackParamList = {
   [HomeStackScreens.CategoriesScreen]: { categoryType: types };
   [HomeStackScreens.CategoryScreen]: undefined;
 };
+
+export enum CATEGORIES {
+  places = 'Places',
+  activities = 'Activities',
+}

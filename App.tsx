@@ -12,6 +12,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Navigators, OnboardingScreens } from 'navigation/Navigation.types';
 import colors from 'theme/colors';
 import { AppContext } from './src/state/context';
+import { useFonts } from 'expo-font';
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,15 @@ const MyTheme = {
 
 const App = () => {
   const [locationData, setLocationData] = useState({});
+
+  const [loaded] = useFonts({
+    Medium: require('./src/theme/fonts/SFProDisplay-Medium.ttf'),
+    Bold: require('./src/theme/fonts/SFProDisplay-Bold.ttf'),
+    Black: require('./src/theme/fonts/SFProDisplay-Black.ttf'),
+    Regular: require('./src/theme/fonts/SFProDisplay-Regular.ttf'),
+    SemiBold: require('./src/theme/fonts/SFProDisplay-SemiBold.ttf'),
+    Heavy: require('./src/theme/fonts/SFProDisplay-Heavy.ttf'),
+  });
 
   return (
     <AppContext.Provider

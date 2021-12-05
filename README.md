@@ -23,8 +23,8 @@ The user will then be displayed with the accessibility features and the contact 
 
 ## Future Work
 - Filter venues by accessibility features
-- Share the location with contacts
 - Search a venue by its name
+- Share the location with contacts
 
 ## Authors
 PM: Sonjide Hussain

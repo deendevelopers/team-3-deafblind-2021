@@ -32,7 +32,9 @@ Designers: Samiya Ahmed and Shah Hussain
 Developers: Hasnaat Akhtar and Yusuf Chowdhury
 
 ## Directions to install the application
-Download “Expo Go” from your app store Go to Profile tab > Options > Log in:
+Download “Expo Go” from your app store
+
+Go to Profile tab > Options > Log in:
 
 - username: ddteam3
 - password: DDTeam3!

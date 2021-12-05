@@ -4,13 +4,11 @@ import {
   HomeStackScreens,
 } from 'navigation/Navigation.types';
 import { getPlacesByType, ILocationData } from '../../network/GoogleMapsAPI';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import ActivityIndicator from 'components/ActivityIndicator';
 import { Card, Paragraph, Title } from 'react-native-paper';
-import { storeData, getData, removeValue } from '../../storage/storageMethods';
-import { AppContext } from 'state/context';
-import { types } from 'network/GoogleMapsAPI.types';
+import { storeData, getData } from '../../storage/storageMethods';
 
 export type CategoriesScreenRoutingProps = StackScreenProps<
   HomeStackParamList,
@@ -24,7 +22,7 @@ const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
   const [filteredPlaces, setFilteredPlaces] = useState<ILocationData[] | null>(
     null
   );
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const { categoryType } = route.params;
 
   const getStoredData = async () => {
@@ -36,7 +34,6 @@ const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
   useEffect(() => {
     setLoading(true);
     (async () => {
-      // Get data from local storage
       const storedData = await getStoredData();
 
       // No stored API data - do a new fetch & store the data
@@ -64,7 +61,7 @@ const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
       setAllPlaces(response);
       const combinedData = {
         ...storedData,
-        categoryType: response,
+        [`${categoryType}`]: response,
       };
 
       await storeData(combinedData);
@@ -72,33 +69,24 @@ const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
     })();
   }, []);
 
-  // Store specific types of each venue (pre-picked to hardcode)
   useEffect(() => {
-    if (categoryType === types.pharmacy) {
-      const pharmacyIDs = [
-        'ChIJG6dE2CwFdkgROcOcqlAKQmo',
-        'ChIJcXNbKIQcdkgRPWnDEJdImuc',
-      ];
-      const filteredPlaces = allPlaces?.filter((item) => {
-        return pharmacyIDs.includes(item.place_id);
-      });
-
-      const final = filteredPlaces?.map((item) => {
+    const final = allPlaces
+      ?.map((item) => {
         const newData = {
           ...item,
           accessibility: {
             wheelchair: true,
             parking: true,
-            inductionLoop: false,
-            lighting: false,
+            inductionLoop: true,
+            lighting: true,
           },
         };
 
         return newData;
-      });
+      })
+      .slice(0, 5);
 
-      setFilteredPlaces(final);
-    }
+    setFilteredPlaces(final);
   }, [allPlaces]);
 
   return (

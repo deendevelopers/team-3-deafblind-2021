@@ -3,7 +3,7 @@ import {
   HomeStackParamList,
   HomeStackScreens,
 } from 'navigation/Navigation.types';
-import { typeFormatted } from 'network/GoogleMapsAPI.types';
+import { typeFormatted, types } from 'network/GoogleMapsAPI.types';
 import React from 'react';
 import { View, Alert, ScrollView, Image } from 'react-native';
 import { Title, Subheading, Paragraph, Button } from 'react-native-paper';
@@ -39,6 +39,61 @@ const CategoryScreen = ({ route }: ICategoryScreenProps) => {
       ]
     );
 
+  const renderImage = () => {
+    if (categoryType === types.restaurant) {
+      return (
+        <Image
+          source={require('../../../assets/restaurant.jpeg')}
+          style={{
+            width: '100%',
+            height: undefined,
+            aspectRatio: 1,
+          }}
+          accessibilityLabel='food served on a plate at a restaurant'
+        />
+      );
+    }
+    if (categoryType === types.supermarket) {
+      return (
+        <Image
+          source={require('../../../assets/supermarket.jpeg')}
+          style={{
+            width: '100%',
+            height: undefined,
+            aspectRatio: 1,
+          }}
+          accessibilityLabel='supermarket aisle with products on the left and right hand side'
+        />
+      );
+    }
+    if (categoryType === types.pharmacy) {
+      return (
+        <Image
+          source={require('../../../assets/pharmacy.jpeg')}
+          style={{
+            width: '100%',
+            height: undefined,
+            aspectRatio: 1,
+          }}
+          accessibilityLabel='pharmacy shelves stocked with pharmaceutical products'
+        />
+      );
+    }
+    if (categoryType === types.bank) {
+      return (
+        <Image
+          source={require('../../../assets/bank.jpeg')}
+          style={{
+            width: '100%',
+            height: undefined,
+            aspectRatio: 1,
+          }}
+          accessibilityLabel='outer exterior of a bank'
+        />
+      );
+    }
+  };
+
   return (
     <ScrollView style={containerStyle}>
       <View
@@ -62,7 +117,7 @@ const CategoryScreen = ({ route }: ICategoryScreenProps) => {
       </View>
 
       {/* Image */}
-      <Title>IMAGE HERE</Title>
+      {renderImage()}
 
       {/* Accessibility Information */}
       <AccessibilityInfo data={categoryItem.accessibility} />

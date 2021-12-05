@@ -118,21 +118,13 @@ async function getDistanceToPlace(placeId: string) {
   }
 }
 
-export async function getPlacePhoto(photoReference: string) {
+export async function getPlacePhoto(photoReference: string, maxWidth: number) {
   try {
-    console.log(
-      `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${encodeURIComponent(
-        photoReference
-      )}&key=${GOOGLE_MAPS_API_KEY}`
+    const response = await axios.get(
+      `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxWidth}&photo_reference=${photoReference}&key=${GOOGLE_MAPS_API_KEY}`
     );
-    // const response = await axios.get(
-    //   `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${encodeURIComponent(
-    //     photoReference
-    //   )}&key=${GOOGLE_MAPS_API_KEY}`
-    // );
 
-    // console.log('Photo Response:');
-    // console.log(response);
+    return response.data;
   } catch (error) {
     console.warn('getPlacePhoto: Error fetching photo');
     console.log(error);

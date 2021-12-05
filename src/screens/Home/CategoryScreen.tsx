@@ -3,10 +3,9 @@ import {
   HomeStackParamList,
   HomeStackScreens,
 } from 'navigation/Navigation.types';
-import { getPlacePhoto } from 'network/GoogleMapsAPI';
 import { typeFormatted } from 'network/GoogleMapsAPI.types';
-import React, { useEffect } from 'react';
-import { View, Text, Alert, ScrollView } from 'react-native';
+import React from 'react';
+import { View, Alert, ScrollView, Image } from 'react-native';
 import { Title, Subheading, Paragraph, Button } from 'react-native-paper';
 import AccessibilityInfo from 'components/AccessibilityInfo';
 import { commonStyles } from '../../utils/commonStyles';
@@ -19,7 +18,7 @@ export type CategoryScreenRoutingProps = StackScreenProps<
 
 interface ICategoryScreenProps extends CategoryScreenRoutingProps {}
 
-const CategoryScreen = ({ navigation, route }: ICategoryScreenProps) => {
+const CategoryScreen = ({ route }: ICategoryScreenProps) => {
   const { categoryItem, categoryType } = route.params;
   const { containerStyle } = commonStyles;
 

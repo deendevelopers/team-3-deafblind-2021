@@ -7,7 +7,6 @@ interface ISettingsScreenProps {}
 const SettingsScreen = (props: ISettingsScreenProps) => {
   return (
     <View>
-      <Text>SettingsScreen</Text>
       <Text>Version: {Constants.manifest?.version}</Text>
     </View>
   );

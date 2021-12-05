@@ -1,5 +1,8 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import Palette from 'icons/Palette';
+import Pharmacy from 'icons/Pharmacy';
+import Bank from 'icons/Bank';
+import ShoppingCart from 'icons/ShoppingCart';
 import {
   CATEGORIES,
   HomeStackParamList,
@@ -10,6 +13,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Card, Title } from 'react-native-paper';
 import { types } from '../../network/GoogleMapsAPI.types';
 import colors from 'theme/colors';
+import Food from 'icons/Food';
 
 export type AllCategoriesRoutingProps = StackScreenProps<
   HomeStackParamList,
@@ -46,7 +50,7 @@ const AllCategoriesScreen = ({
         >
           <Card.Content style={styles.cardContainer}>
             <View style={styles.iconContainer}>
-              <Palette color={colors.tertiary} size={30} />
+              <Food color={colors.tertiary} size={40} />
             </View>
             <Title>Restaurants</Title>
           </Card.Content>
@@ -65,9 +69,9 @@ const AllCategoriesScreen = ({
         >
           <Card.Content style={styles.cardContainer}>
             <View style={styles.iconContainer}>
-              <Palette color={colors.tertiary} size={30} />
+              <Pharmacy color={colors.tertiary} size={40} />
             </View>
-            <Title>Pharmacy, Health</Title>
+            <Title>Pharmacy</Title>
           </Card.Content>
         </Card>
 
@@ -84,7 +88,7 @@ const AllCategoriesScreen = ({
         >
           <Card.Content style={styles.cardContainer}>
             <View style={styles.iconContainer}>
-              <Palette color={colors.tertiary} size={30} />
+              <Bank color={colors.tertiary} size={40} />
             </View>
             <Title>Banks</Title>
           </Card.Content>
@@ -103,7 +107,7 @@ const AllCategoriesScreen = ({
         >
           <Card.Content style={styles.cardContainer}>
             <View style={styles.iconContainer}>
-              <Palette color={colors.tertiary} size={30} />
+              <ShoppingCart color={colors.tertiary} size={40} />
             </View>
             <Title>Supermarkets</Title>
           </Card.Content>

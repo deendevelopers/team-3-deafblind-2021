@@ -4,7 +4,7 @@ import {
   HomeStackScreens,
 } from 'navigation/Navigation.types';
 import { typeFormatted, types } from 'network/GoogleMapsAPI.types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Alert, ScrollView, Image } from 'react-native';
 import { Title, Subheading, Paragraph, Button } from 'react-native-paper';
 import AccessibilityInfo from 'components/AccessibilityInfo';
@@ -18,8 +18,14 @@ export type CategoryScreenRoutingProps = StackScreenProps<
 
 interface ICategoryScreenProps extends CategoryScreenRoutingProps {}
 
-const CategoryScreen = ({ route }: ICategoryScreenProps) => {
+const CategoryScreen = ({ navigation, route }: ICategoryScreenProps) => {
   const { categoryItem, categoryType } = route.params;
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: categoryItem.name,
+    });
+  }, []);
   const { containerStyle } = commonStyles;
 
   const createMapsAlert = () =>
@@ -116,10 +122,8 @@ const CategoryScreen = ({ route }: ICategoryScreenProps) => {
         </View>
       </View>
 
-      {/* Image */}
       {renderImage()}
 
-      {/* Accessibility Information */}
       <AccessibilityInfo data={categoryItem.accessibility} />
 
       <Title>Address</Title>

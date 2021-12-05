@@ -5,10 +5,16 @@ import {
 } from 'navigation/Navigation.types';
 import { getPlacesByType, ILocationData } from '../../network/GoogleMapsAPI';
 import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import ActivityIndicator from 'components/ActivityIndicator';
 import { Card, Paragraph, Title } from 'react-native-paper';
 import { storeData, getData } from '../../storage/storageMethods';
+import { types } from 'network/GoogleMapsAPI.types';
+import ShoppingCart from 'icons/ShoppingCart';
+import colors from 'theme/colors';
+import Bank from 'icons/Bank';
+import Food from 'icons/Food';
+import Pharmacy from 'icons/Pharmacy';
 
 export type CategoriesScreenRoutingProps = StackScreenProps<
   HomeStackParamList,
@@ -89,6 +95,21 @@ const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
     setFilteredPlaces(final);
   }, [allPlaces]);
 
+  const renderIcon = () => {
+    if (categoryType === types.supermarket) {
+      return <ShoppingCart size={40} color={colors.tertiary} />;
+    }
+    if (categoryType === types.bank) {
+      return <Bank size={40} color={colors.tertiary} />;
+    }
+    if (categoryType === types.restaurant) {
+      return <Food size={40} color={colors.tertiary} />;
+    }
+    if (categoryType === types.pharmacy) {
+      return <Pharmacy size={40} color={colors.tertiary} />;
+    }
+  };
+
   return (
     // TODO: Convert to a FlatList
     <ScrollView>
@@ -104,6 +125,8 @@ const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
               // Add accessibility info
               <Card
                 key={`${currentPlace.place_id}`}
+                accessibilityLabel={`View ${currentPlace.name}`}
+                accessibilityHint={`Navigate to the next screen to find out more about ${currentPlace.name}`}
                 onPress={() =>
                   navigation.navigate(HomeStackScreens.CategoryScreen, {
                     categoryItem: currentPlace,
@@ -111,9 +134,21 @@ const CategoriesScreen = ({ navigation, route }: ICategoriesScreenProps) => {
                   })
                 }
               >
-                <Card.Content>
-                  <Title>{currentPlace.name}</Title>
-                  <Paragraph>{currentPlace.distance} miles away</Paragraph>
+                <Card.Content
+                  style={{ flexDirection: 'row', alignItems: 'center' }}
+                >
+                  <View style={{ marginRight: 20, flex: 2 }}>
+                    {renderIcon()}
+                  </View>
+
+                  <View
+                    style={{
+                      flex: 10,
+                    }}
+                  >
+                    <Title>{currentPlace.name}</Title>
+                    <Paragraph>{currentPlace.distance} miles away</Paragraph>
+                  </View>
                 </Card.Content>
               </Card>
             );

@@ -11,32 +11,32 @@ export type LandingScreenRoutingProps = StackScreenProps<
   OnboardingScreens.LandingScreen
 >;
 
-interface ILandingScreenProps extends LandingScreenRoutingProps { }
+interface ILandingScreenProps extends LandingScreenRoutingProps {}
 
 const LandingScreen = ({ navigation }: ILandingScreenProps) => {
   return (
     <View style={styles.container}>
-
       <View style={styles.iconText}>
-
         <View style={styles.icon}>
-          <Icon name="users" size={200} color="#F27F3E"></Icon>
+          <Icon name='users' size={200} color='#F27F3E'></Icon>
         </View>
 
         <View style={styles.centre}>
-          <Text style={styles.title}>Your guide to {'\n'} accessible places</Text>
+          <Text style={styles.title}>
+            Your guide to {'\n'} accessible places
+          </Text>
         </View>
-
       </View>
 
       <View style={styles.ctaButtonContainer}>
         <Button
-          mode="contained"
+          mode='contained'
           uppercase={false}
           style={styles.ctaButton}
           contentStyle={styles.ctaButtonInner}
           labelStyle={styles.ctaButtonText}
-          onPress={() => navigation.navigate(OnboardingScreens.LocationScreen)}>
+          onPress={() => navigation.navigate(OnboardingScreens.LocationScreen)}
+        >
           Get started
         </Button>
       </View>
@@ -83,17 +83,17 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   text: {
-    color: "white",
+    color: 'white',
     fontSize: 42,
     lineHeight: 84,
-    fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#000000c0"
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: '#000000c0',
   },
   image: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: 'center',
   },
-})
+});
 
 export default LandingScreen;

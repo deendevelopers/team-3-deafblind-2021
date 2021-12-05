@@ -23,6 +23,7 @@ export function MainApp() {
           tabBarIcon: ({ color, size = 20 }) => (
             <MaterialCommunityIcons name='home' color={color} size={size} />
           ),
+          tabBarAccessibilityLabel: 'Navigate to the home screen',
         }}
       />
       <Tab.Screen
@@ -32,6 +33,7 @@ export function MainApp() {
           tabBarIcon: ({ color, size = 20 }) => (
             <Ionicons name='settings' color={color} size={size} />
           ),
+          tabBarAccessibilityLabel: 'Navigate to the settings screen',
         }}
       />
     </Tab.Navigator>
